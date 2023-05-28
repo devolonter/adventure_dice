@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'di/injectable.dart';
+
 void main() {
+  configureDependencies();
   runApp(const MyApp());
 }
 
