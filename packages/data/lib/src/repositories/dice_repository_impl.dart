@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 
-import '../sources//dice_data_source.dart';
+import '../sources/dice_data_source.dart';
 
 class DiceRepositoryImpl implements DiceRepository {
   final DiceDataSource _diceDataSource;

@@ -1,9 +1,12 @@
+import 'package:data/data.dart';
+import 'package:domain/domain.dart';
 import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
 
-import 'injectable.config.dart';
+Future configureDependencies() async {
+  final getIt = GetIt.I;
+  final DiceRepository diceRepository = DiceRepositoryImpl(
+    StaticDiceDataSource(),
+  );
 
-final GetIt getIt = GetIt.I;
-
-@InjectableInit()
-GetIt configureDependencies() => getIt.init();
+  getIt.registerSingleton<GetAllDiceUseCase>(GetAllDiceUseCase(diceRepository));
+}
