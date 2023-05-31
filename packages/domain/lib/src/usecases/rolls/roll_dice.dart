@@ -4,10 +4,10 @@ import '../../entities/dice.dart';
 import '../../entities/roll.dart';
 import '../../repositories/rolls_repository.dart';
 
-class RollDiceUseCase {
+class RollDice {
   final RollsRepository _rollsRepository;
 
-  RollDiceUseCase(this._rollsRepository);
+  RollDice(this._rollsRepository);
 
   Future<Roll> call(Dice dice) async {
     final roll = Roll(dice, Random().nextInt(dice.sides) + 1);

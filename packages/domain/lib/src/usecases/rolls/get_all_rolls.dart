@@ -1,10 +1,10 @@
 import '../../entities/roll.dart';
 import '../../repositories/rolls_repository.dart';
 
-class GetAllRollsUseCase {
+class GetAllRolls {
   final RollsRepository _rollRepository;
 
-  GetAllRollsUseCase(this._rollRepository);
+  GetAllRolls(this._rollRepository);
 
   Future<List<Roll>> call() => _rollRepository.getAll();
 }

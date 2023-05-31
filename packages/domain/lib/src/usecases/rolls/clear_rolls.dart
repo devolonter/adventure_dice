@@ -1,9 +1,9 @@
 import '../../repositories/rolls_repository.dart';
 
-class ClearRollsUseCase {
+class ClearRolls {
   final RollsRepository _rollRepository;
 
-  ClearRollsUseCase(this._rollRepository);
+  ClearRolls(this._rollRepository);
 
   Future<void> call() => _rollRepository.clear();
 }
