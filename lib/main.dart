@@ -1,12 +1,6 @@
-import 'package:data/data.dart';
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-
-import 'di/injectable.dart';
 
 void main() async {
-  await configureDependencies();
   runApp(const MyApp());
 }
 
