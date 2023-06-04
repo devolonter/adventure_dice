@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 class DicePainter extends CustomPainter {
   final int sides;
   final Color color;
+  final Color textColor;
 
-  DicePainter({required this.sides, required this.color});
+  DicePainter(
+      {required this.sides, required this.color, required this.textColor});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -117,8 +119,8 @@ class DicePainter extends CustomPainter {
         Offset p3 =
             Offset(-radius * 2.0, size.height - size.height / 4 + radius);
         Offset p4 = Offset(size.width / 2, size.height + radius * 3.0);
-        Offset p5 =
-            Offset(size.width + radius * 2.0, size.height - size.height / 4 + radius);
+        Offset p5 = Offset(
+            size.width + radius * 2.0, size.height - size.height / 4 + radius);
         Offset p6 = Offset(size.width + radius * 2.0, size.height / 4);
 
         Path path = Path();
@@ -148,6 +150,27 @@ class DicePainter extends CustomPainter {
             Offset(size.width / 2, size.height / 2), radius * 1.5, paint);
         break;
     }
+
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(
+        text: '$sides',
+        style: TextStyle(
+          color: textColor,
+          fontSize: size.width * 0.33,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    );
+
+    textPainter.layout();
+    textPainter.paint(
+      canvas,
+      Offset(
+        size.width / 2 - textPainter.width / 2,
+        size.height / 2 - textPainter.height / 2,
+      ),
+    );
   }
 
   @override
