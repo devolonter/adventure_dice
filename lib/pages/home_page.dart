@@ -8,7 +8,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final config = ref.watch(getAllDiceProvider);
+    final config = ref.watch(appDiceProvider);
 
     return Scaffold(
       appBar: AppBar(
