@@ -15,14 +15,11 @@ class HomePage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Adventure Dice'),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Expanded(child: SizedBox.shrink()),
-            DiceGrid(),
-          ],
-        ),
+      body: const Column(
+        children: [
+          Expanded(child: SizedBox.shrink()),
+          DiceGrid(),
+        ],
       ),
     );
   }

@@ -5,9 +5,11 @@ import '../../providers/dice.dart';
 import 'dice_single.dart';
 
 class DiceGrid extends ConsumerWidget {
-  const DiceGrid({Key? key, this.crossAxisCount = 4}) : super(key: key);
+  const DiceGrid({Key? key, this.crossAxisCount = 4, this.padding = 10})
+      : super(key: key);
 
   final int crossAxisCount;
+  final int padding;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,20 +18,22 @@ class DiceGrid extends ConsumerWidget {
     final diceSize = MediaQuery.of(context).size.width / crossAxisCount;
     final countDicePerRow = (countDice / crossAxisCount).ceil();
 
-    return SizedBox(
-      height: diceSize * countDicePerRow + 4 * (countDicePerRow - 1),
+    return Container(
+      height: diceSize * countDicePerRow +
+          (padding / 2) * (countDicePerRow - 1) +
+          padding * 2,
+      color: Theme.of(context).colorScheme.primary.withOpacity(0.33),
+      padding: EdgeInsets.all(padding.toDouble()),
       child: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
-            crossAxisSpacing: 4,
-            mainAxisSpacing: 4,
+            crossAxisSpacing: padding.toDouble(),
+            mainAxisSpacing: padding.toDouble(),
           ),
           itemCount: countDice,
           itemBuilder: (context, index) {
             final dice = config.value![index];
-            return DiceSingle(
-                dice: dice,
-                size: Size.square(diceSize));
+            return DiceSingle(dice: dice, size: Size.square(diceSize));
           }),
     );
   }
