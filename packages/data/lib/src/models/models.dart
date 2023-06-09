@@ -1,0 +1,1 @@
+export 'isar/isar_roll_model.dart';
