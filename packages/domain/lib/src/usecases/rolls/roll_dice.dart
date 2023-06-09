@@ -10,7 +10,7 @@ class RollDice {
   RollDice(this._rollsRepository);
 
   Future<Roll> call(Dice dice) async {
-    final roll = Roll(dice, Random().nextInt(dice.sides) + 1);
+    final roll = dice.roll();
     await _rollsRepository.save(roll);
     return roll;
   }
