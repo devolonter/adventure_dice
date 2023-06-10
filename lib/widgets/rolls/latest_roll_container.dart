@@ -1,8 +1,8 @@
-import 'package:adventure_dice/widgets/rolls/latest_roll.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/dice_rolls.dart';
+import 'latest_roll.dart';
 
 class LatestRollContainer extends ConsumerWidget {
   const LatestRollContainer({super.key});
