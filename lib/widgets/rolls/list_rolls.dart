@@ -15,36 +15,38 @@ class ListRolls extends ConsumerWidget {
     return rolls.when(
       data: (rolls) {
         return Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const Spacer(),
-            ListView.separated(
-              shrinkWrap: true,
-              itemCount: rolls.length,
-              padding: EdgeInsets.zero,
-              itemBuilder: (context, index) {
-                final roll = rolls[index];
+            Flexible(
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemCount: rolls.length,
+                padding: EdgeInsets.zero,
+                itemBuilder: (context, index) {
+                  final roll = rolls[index];
 
-                return Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      DiceIcon(
-                          size: const Size.square(20),
-                          dice: roll.dice,
-                          withText: false,
-                          color: Theme.of(context).colorScheme.secondary),
-                      const SizedBox(width: 8),
-                      Text(roll.result.toString(),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.secondary,
-                          )),
-                    ]);
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return const SizedBox(height: 2);
-              },
+                  return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        DiceIcon(
+                            size: const Size.square(20),
+                            dice: roll.dice,
+                            withText: false,
+                            color: Theme.of(context).colorScheme.secondary),
+                        const SizedBox(width: 8),
+                        Text(roll.result.toString(),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.secondary,
+                            )),
+                      ]);
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return const SizedBox(height: 2);
+                },
+              ),
             ),
           ],
         );
