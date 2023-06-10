@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 
-import '../sources//rolls_data_source.dart';
+import '../sources/rolls_data_source.dart';
 
 class RollsRepositoryImpl implements RollsRepository {
   final RollsDataSource _rollsDataSource;

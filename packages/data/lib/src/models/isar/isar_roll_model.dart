@@ -4,7 +4,7 @@ import 'package:isar/isar.dart';
 part 'isar_roll_model.g.dart';
 
 @collection
-@Name('Roll')
+@Name('Rolls')
 class IsarRollModel {
   late Id? id;
   late byte diceSides;

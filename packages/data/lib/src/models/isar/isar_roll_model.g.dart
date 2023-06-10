@@ -14,8 +14,8 @@ extension GetIsarRollModelCollection on Isar {
 }
 
 const IsarRollModelSchema = CollectionSchema(
-  name: r'Roll',
-  id: -7424912711059694858,
+  name: r'Rolls',
+  id: -7481504655693309746,
   properties: {
     r'diceSides': PropertySchema(
       id: 0,
