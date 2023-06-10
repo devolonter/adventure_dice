@@ -1,26 +1,44 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/dice_rolls.dart';
 
 class LatestRoll extends ConsumerWidget {
-  const LatestRoll({super.key});
+  final Roll roll;
+
+  const LatestRoll({
+    super.key,
+    required this.roll,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final latestRoll = ref.watch(getLatestRollProvider);
-
-    return SizedBox(
-      height: 75,
-      child: latestRoll.maybeWhen(
-        data: (roll) {
-          return Text(
-            roll?.result.toString() ?? 'No rolls yet',
-            style: Theme.of(context).textTheme.headline6,
-          );
-        },
-        orElse: () => const SizedBox.shrink()
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+          onPressed: () =>
+              ref.read(diceRollsProvider.notifier).modifyRoll(roll, -1),
+          icon: const Icon(Icons.remove),
+          iconSize: 28,
+        ),
+        Expanded(
+          child: Text(roll.result.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 48,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.primary,
+              )),
+        ),
+        IconButton(
+          onPressed: () =>
+              ref.read(diceRollsProvider.notifier).modifyRoll(roll, 1),
+          icon: const Icon(Icons.add),
+          iconSize: 28,
+        ),
+      ],
     );
   }
 }

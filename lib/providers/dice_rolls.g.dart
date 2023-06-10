@@ -21,7 +21,7 @@ final getLatestRollProvider = AutoDisposeProvider<AsyncValue<Roll?>>.internal(
 );
 
 typedef GetLatestRollRef = AutoDisposeProviderRef<AsyncValue<Roll?>>;
-String _$diceRollsHash() => r'28fc16316bd19af59de1d60231320b13d198b7cc';
+String _$diceRollsHash() => r'6e4d25932528d856b2618eae97da8b2e0fcef19f';
 
 /// See also [DiceRolls].
 @ProviderFor(DiceRolls)

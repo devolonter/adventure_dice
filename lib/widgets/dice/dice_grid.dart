@@ -6,11 +6,11 @@ import '../../providers/dice.dart';
 import 'dice_single.dart';
 
 class DiceGrid extends ConsumerWidget {
-  const DiceGrid({Key? key, this.crossAxisCount = 4, this.padding = 10})
-      : super(key: key);
-
   final int crossAxisCount;
   final int padding;
+
+  const DiceGrid({Key? key, this.crossAxisCount = 4, this.padding = 10})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

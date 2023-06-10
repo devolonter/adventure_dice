@@ -26,7 +26,7 @@ class DiceSingle extends ConsumerWidget {
         ),
       ),
       child: CustomPaint(
-        size: size * 0.6,
+        size: size * 0.55,
         painter: DicePainter(
           sides: dice.sides,
           color: Colors.black,

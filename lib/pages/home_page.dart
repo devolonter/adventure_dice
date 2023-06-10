@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/dice.dart';
 import '../widgets/dice/dice_grid.dart';
-import '../widgets/rolls/latest_roll.dart';
+import '../widgets/rolls/latest_roll_container.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class HomePage extends ConsumerWidget {
       body: const Column(
         children: [
           Expanded(child: SizedBox.shrink()),
-          LatestRoll(),
+          LatestRollContainer(),
           DiceGrid(),
         ],
       ),

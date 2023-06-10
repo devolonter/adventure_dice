@@ -12,6 +12,7 @@ class DiceRolls extends _$DiceRolls {
   late final RollsRepository _rollsRepository;
   late final GetAllRolls _getAllRolls;
   late final RollDice _rollDice;
+  late final ModifyRoll _modifyRoll;
 
   @override
   Future<List<Roll>> build() async {
@@ -23,6 +24,7 @@ class DiceRolls extends _$DiceRolls {
 
     _getAllRolls = GetAllRolls(_rollsRepository);
     _rollDice = RollDice(_rollsRepository);
+    _modifyRoll = ModifyRoll(_rollsRepository);
 
     return _getAllRolls();
   }
@@ -30,6 +32,13 @@ class DiceRolls extends _$DiceRolls {
   Future<void> rollDice(Dice dice) async {
     state = await AsyncValue.guard(() async {
       await _rollDice(dice);
+      return _getAllRolls();
+    });
+  }
+
+  Future<void> modifyRoll(Roll roll, int modifier) async {
+    state = await AsyncValue.guard(() async {
+      await _modifyRoll(roll, modifier);
       return _getAllRolls();
     });
   }
