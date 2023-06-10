@@ -1,9 +1,11 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../providers/dice_rolls.dart';
 import 'dice_painter.dart';
 
-class DiceSingle extends StatelessWidget {
+class DiceSingle extends ConsumerWidget {
   const DiceSingle({
     super.key,
     required this.dice,
@@ -14,9 +16,9 @@ class DiceSingle extends StatelessWidget {
   final Size size;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () => ref.read(diceRollsProvider.notifier).rollDice(dice),
       style: TextButton.styleFrom(
         padding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(

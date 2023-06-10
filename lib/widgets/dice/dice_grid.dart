@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,10 +14,11 @@ class DiceGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final config = ref.watch(appDiceProvider);
-    final countDice = config.value?.length ?? 0;
-    final diceSize = MediaQuery.of(context).size.width / crossAxisCount;
-    final countDicePerRow = (countDice / crossAxisCount).ceil();
+    final AsyncValue<List<Dice>> config = ref.watch(appDiceProvider);
+
+    final int countDice = config.value?.length ?? 0;
+    final double diceSize = MediaQuery.of(context).size.width / crossAxisCount;
+    final int countDicePerRow = (countDice / crossAxisCount).ceil();
 
     return Container(
       height: diceSize * countDicePerRow +
