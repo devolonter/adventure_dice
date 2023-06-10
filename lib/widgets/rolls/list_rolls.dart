@@ -14,6 +14,14 @@ class ListRolls extends ConsumerWidget {
 
     return rolls.when(
       data: (rolls) {
+        final ScrollController scrollController = ScrollController();
+
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (scrollController.hasClients) {
+            scrollController.jumpTo(scrollController.position.maxScrollExtent);
+          }
+        });
+
         return Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -22,6 +30,7 @@ class ListRolls extends ConsumerWidget {
                 shrinkWrap: true,
                 itemCount: rolls.length,
                 padding: EdgeInsets.zero,
+                controller: scrollController,
                 itemBuilder: (context, index) {
                   final roll = rolls[index];
 
@@ -33,7 +42,7 @@ class ListRolls extends ConsumerWidget {
                             dice: roll.dice,
                             withText: false,
                             color: Theme.of(context).colorScheme.secondary),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: 6),
                         Text(roll.result.toString(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
