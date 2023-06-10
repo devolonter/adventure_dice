@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/dice_rolls.dart';
-import 'dice_painter.dart';
+import 'dice_icon.dart';
 
 class DiceSingle extends ConsumerWidget {
   const DiceSingle({
@@ -25,14 +25,7 @@ class DiceSingle extends ConsumerWidget {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      child: CustomPaint(
-        size: size * 0.55,
-        painter: DicePainter(
-          sides: dice.sides,
-          color: Colors.black,
-          textColor: Colors.white,
-        ),
-      ),
+      child: DiceIcon(size: size, dice: dice),
     );
   }
 }

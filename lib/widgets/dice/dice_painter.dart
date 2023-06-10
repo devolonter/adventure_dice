@@ -7,9 +7,13 @@ class DicePainter extends CustomPainter {
   final int sides;
   final Color color;
   final Color textColor;
+  final bool withText;
 
   DicePainter(
-      {required this.sides, required this.color, required this.textColor});
+      {required this.sides,
+      required this.color,
+      required this.textColor,
+      this.withText = true});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -149,6 +153,10 @@ class DicePainter extends CustomPainter {
         canvas.drawCircle(
             Offset(size.width / 2, size.height / 2), radius * 1.5, paint);
         break;
+    }
+
+    if (!withText) {
+      return;
     }
 
     final TextPainter textPainter = TextPainter(

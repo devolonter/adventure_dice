@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'dice.dart';
 
 class Roll {

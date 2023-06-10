@@ -1,5 +1,4 @@
 import 'package:adventure_dice/widgets/rolls/latest_roll.dart';
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
