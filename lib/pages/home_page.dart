@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../widgets/dice/dice_grid.dart';
 import '../widgets/rolls/clear_rolls_button.dart';
-import '../widgets/rolls/latest_roll_container.dart';
+import '../widgets/rolls/rolls_result_container.dart';
 import '../widgets/rolls/list_rolls.dart';
 
 class HomePage extends ConsumerWidget {
@@ -21,7 +21,7 @@ class HomePage extends ConsumerWidget {
           Expanded(
             child: ListRolls(),
           ),
-          LatestRollContainer(),
+          RollsResultContainer(),
           Stack(
             clipBehavior: Clip.none,
             children: [

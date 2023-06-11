@@ -4,12 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/dice_rolls.dart';
 
-class LatestRoll extends ConsumerWidget {
-  final Roll roll;
+class RollsResult extends ConsumerWidget {
+  final int result;
 
-  const LatestRoll({
+  const RollsResult({
     super.key,
-    required this.roll,
+    required this.result,
   });
 
   @override
@@ -19,12 +19,12 @@ class LatestRoll extends ConsumerWidget {
       children: [
         IconButton(
           onPressed: () =>
-              ref.read(diceRollsProvider.notifier).modifyRoll(roll, -1),
+              ref.read(diceRollsProvider.notifier).modifyRoll(-1),
           icon: const Icon(Icons.remove),
           iconSize: 28,
         ),
         Expanded(
-          child: Text(roll.result.toString(),
+          child: Text(result.toString(),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 48,
@@ -34,7 +34,7 @@ class LatestRoll extends ConsumerWidget {
         ),
         IconButton(
           onPressed: () =>
-              ref.read(diceRollsProvider.notifier).modifyRoll(roll, 1),
+              ref.read(diceRollsProvider.notifier).modifyRoll(1),
           icon: const Icon(Icons.add),
           iconSize: 28,
         ),

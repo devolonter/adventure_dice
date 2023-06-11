@@ -38,9 +38,11 @@ class DiceRolls extends _$DiceRolls {
     });
   }
 
-  Future<void> modifyRoll(Roll roll, int modifier) async {
+  Future<void> modifyRoll(int modifier) async {
+    if (state.value == null || state.value!.isEmpty) return;
+
     state = await AsyncValue.guard(() async {
-      await _modifyRoll(roll, modifier);
+      await _modifyRoll(state.value!.last, modifier);
       return _getAllRolls();
     });
   }
@@ -54,7 +56,7 @@ class DiceRolls extends _$DiceRolls {
 }
 
 @riverpod
-AsyncValue<Roll?> getLatestRoll(GetLatestRollRef ref) {
+AsyncValue<int> rollsResult(RollsResultRef ref) {
   final rolls = ref.watch(diceRollsProvider);
-  return rolls.whenData((rolls) => rolls.lastOrNull);
+  return rolls.whenData((rolls) => RollsResult(rolls)());
 }
