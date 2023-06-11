@@ -5,5 +5,5 @@ class RollsResult {
 
   const RollsResult(this.rolls);
 
-  int call() => rolls.fold(0, (sum, roll) => sum + roll.result);
+  int call() => rolls.fold(0, (sum, roll) => sum + roll.total);
 }

@@ -34,7 +34,7 @@ class ListRollItem extends StatelessWidget {
                 roll.result.toString(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).colorScheme.secondary,
                 ),

@@ -17,14 +17,14 @@ class RollModifierValue extends StatelessWidget {
       children: [
         Icon(modifier == RollModifier.advantage ? Icons.add : Icons.remove,
             size: 14,
-            color: Theme.of(context).colorScheme.secondary.withOpacity(0.75)),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(0.85)),
         const SizedBox(width: 2),
         Text(
           value.toString(),
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 14,
-            color: Theme.of(context).colorScheme.secondary.withOpacity(0.75),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(0.85),
           ),
         ),
       ],
