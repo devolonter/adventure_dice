@@ -12,8 +12,7 @@ class Roll {
   Roll(this.dice, this.result,
       {this.id, List<RollModifier> modifiers = const []}) {
     for (final modifier in modifiers) {
-      final int result = _modifiers[modifier] ?? 0;
-      _modifiers[modifier] = result + 1;
+      addModifier(modifier);
     }
   }
 
