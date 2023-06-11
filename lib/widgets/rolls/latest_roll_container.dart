@@ -11,17 +11,14 @@ class LatestRollContainer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final latestRoll = ref.watch(getLatestRollProvider);
 
-    return SizedBox(
-      height: 90,
-      child: latestRoll.maybeWhen(
-          data: (roll) {
-            return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: (roll != null)
-                    ? LatestRoll(roll: roll)
-                    : const SizedBox.shrink());
-          },
-          orElse: () => const SizedBox.shrink()),
-    );
+    return latestRoll.maybeWhen(
+        data: (roll) {
+          return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: (roll != null)
+                  ? LatestRoll(roll: roll)
+                  : const SizedBox.shrink());
+        },
+        orElse: () => const SizedBox.shrink());
   }
 }

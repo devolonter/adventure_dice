@@ -32,6 +32,7 @@ class DiceGrid extends ConsumerWidget {
             crossAxisSpacing: padding.toDouble(),
             mainAxisSpacing: padding.toDouble(),
           ),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: countDice,
           itemBuilder: (context, index) {
             final dice = config.value![index];
