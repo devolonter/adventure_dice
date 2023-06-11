@@ -6,9 +6,8 @@ class ModifyRoll {
 
   ModifyRoll(this._rollsRepository);
 
-  Future<Roll> call(Roll roll, int modifier) async {
-    final newRoll = Roll(roll.dice, roll.result + modifier, id: roll.id);
-    await _rollsRepository.save(newRoll);
-    return newRoll;
+  Future<Roll> call(Roll roll, RollModifier modifier) async {
+    await _rollsRepository.save(roll..addModifier(modifier));
+    return roll;
   }
 }

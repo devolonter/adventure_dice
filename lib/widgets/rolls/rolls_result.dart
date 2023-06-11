@@ -15,11 +15,11 @@ class RollsResult extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconButton(
-          onPressed: () =>
-              ref.read(diceRollsProvider.notifier).modifyRoll(-1),
+          onPressed: () => ref
+              .read(diceRollsProvider.notifier)
+              .modifyRoll(RollModifier.disadvantage),
           icon: const Icon(Icons.remove),
           iconSize: 28,
         ),
@@ -33,8 +33,9 @@ class RollsResult extends ConsumerWidget {
               )),
         ),
         IconButton(
-          onPressed: () =>
-              ref.read(diceRollsProvider.notifier).modifyRoll(1),
+          onPressed: () => ref
+              .read(diceRollsProvider.notifier)
+              .modifyRoll(RollModifier.advantage),
           icon: const Icon(Icons.add),
           iconSize: 28,
         ),

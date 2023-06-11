@@ -38,7 +38,7 @@ class DiceRolls extends _$DiceRolls {
     });
   }
 
-  Future<void> modifyRoll(int modifier) async {
+  Future<void> modifyRoll(RollModifier modifier) async {
     if (state.value == null || state.value!.isEmpty) return;
 
     state = await AsyncValue.guard(() async {

@@ -20,7 +20,7 @@ final rollsResultProvider = AutoDisposeProvider<AsyncValue<int>>.internal(
 );
 
 typedef RollsResultRef = AutoDisposeProviderRef<AsyncValue<int>>;
-String _$diceRollsHash() => r'b1286fb40ec85eff06f09d12eab6b92ddcd31afa';
+String _$diceRollsHash() => r'18283295b8d14e1ac6ef228c176cd462466a8478';
 
 /// See also [DiceRolls].
 @ProviderFor(DiceRolls)

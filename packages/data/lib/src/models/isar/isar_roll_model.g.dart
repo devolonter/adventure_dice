@@ -22,8 +22,13 @@ const IsarRollModelSchema = CollectionSchema(
       name: r'diceSides',
       type: IsarType.byte,
     ),
-    r'result': PropertySchema(
+    r'modifiers': PropertySchema(
       id: 1,
+      name: r'modifiers',
+      type: IsarType.byteList,
+    ),
+    r'result': PropertySchema(
+      id: 2,
       name: r'result',
       type: IsarType.byte,
     )
@@ -48,6 +53,7 @@ int _isarRollModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 + object.modifiers.length;
   return bytesCount;
 }
 
@@ -58,7 +64,8 @@ void _isarRollModelSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeByte(offsets[0], object.diceSides);
-  writer.writeByte(offsets[1], object.result);
+  writer.writeByteList(offsets[1], object.modifiers);
+  writer.writeByte(offsets[2], object.result);
 }
 
 IsarRollModel _isarRollModelDeserialize(
@@ -70,7 +77,8 @@ IsarRollModel _isarRollModelDeserialize(
   final object = IsarRollModel();
   object.diceSides = reader.readByte(offsets[0]);
   object.id = id;
-  object.result = reader.readByte(offsets[1]);
+  object.modifiers = reader.readByteList(offsets[1]) ?? [];
+  object.result = reader.readByte(offsets[2]);
   return object;
 }
 
@@ -84,6 +92,8 @@ P _isarRollModelDeserializeProp<P>(
     case 0:
       return (reader.readByte(offset)) as P;
     case 1:
+      return (reader.readByteList(offset) ?? []) as P;
+    case 2:
       return (reader.readByte(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -314,6 +324,151 @@ extension IsarRollModelQueryFilter
   }
 
   QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      modifiersElementEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'modifiers',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      modifiersElementGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'modifiers',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      modifiersElementLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'modifiers',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      modifiersElementBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'modifiers',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      modifiersLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'modifiers',
+        length,
+        true,
+        length,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      modifiersIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'modifiers',
+        0,
+        true,
+        0,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      modifiersIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'modifiers',
+        0,
+        false,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      modifiersLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'modifiers',
+        0,
+        true,
+        length,
+        include,
+      );
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      modifiersLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'modifiers',
+        length,
+        include,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      modifiersLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'modifiers',
+        lower,
+        includeLower,
+        upper,
+        includeUpper,
+      );
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
       resultEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -452,6 +607,12 @@ extension IsarRollModelQueryWhereDistinct
     });
   }
 
+  QueryBuilder<IsarRollModel, IsarRollModel, QDistinct> distinctByModifiers() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'modifiers');
+    });
+  }
+
   QueryBuilder<IsarRollModel, IsarRollModel, QDistinct> distinctByResult() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'result');
@@ -470,6 +631,12 @@ extension IsarRollModelQueryProperty
   QueryBuilder<IsarRollModel, int, QQueryOperations> diceSidesProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'diceSides');
+    });
+  }
+
+  QueryBuilder<IsarRollModel, List<int>, QQueryOperations> modifiersProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'modifiers');
     });
   }
 
