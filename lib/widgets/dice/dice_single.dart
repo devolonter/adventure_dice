@@ -26,7 +26,11 @@ class DiceSingle extends ConsumerWidget {
         ),
       ),
       child: DiceIcon(
-          size: size, dice: dice, color: Theme.of(context).colorScheme.primary),
+        size: size,
+        dice: dice,
+        color: Theme.of(context).colorScheme.primary,
+        textColor: Theme.of(context).colorScheme.onPrimary,
+      ),
     );
   }
 }

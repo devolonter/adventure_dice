@@ -13,7 +13,8 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Adventure Dice'),
+        title: Text('Adventure Dice',
+            style: TextStyle(color: Theme.of(context).colorScheme.primary)),
       ),
       body: const Column(
         children: [
