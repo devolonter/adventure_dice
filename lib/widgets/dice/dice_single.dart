@@ -25,7 +25,8 @@ class DiceSingle extends ConsumerWidget {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      child: DiceIcon(size: size, dice: dice),
+      child: DiceIcon(
+          size: size, dice: dice, color: Theme.of(context).colorScheme.primary),
     );
   }
 }
