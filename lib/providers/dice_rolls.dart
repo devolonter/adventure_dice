@@ -1,4 +1,3 @@
-
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -19,9 +18,7 @@ class DiceRolls extends _$DiceRolls {
   Future<List<Roll>> build() async {
     final isar = await ref.watch(isarProvider.future);
 
-    _rollsRepository = RollsRepositoryImpl(
-      IsarRollsDataSource(isar)
-    );
+    _rollsRepository = RollsRepositoryImpl(IsarRollsDataSource(isar));
 
     _getAllRolls = GetAllRolls(_rollsRepository);
     _rollDice = RollDice(_rollsRepository);
@@ -52,6 +49,28 @@ class DiceRolls extends _$DiceRolls {
       await _clearRolls();
       return _getAllRolls();
     });
+  }
+}
+
+@riverpod
+class SelectedRolls extends _$SelectedRolls {
+  @override
+  Set<Roll> build() {
+    return {};
+  }
+
+  bool toggle(Roll roll) {
+    if (state.contains(roll)) {
+      state = Set.of(state)..remove(roll);
+      return false;
+    } else {
+      state = Set.of(state)..add(roll);
+      return true;
+    }
+  }
+
+  void clear() {
+    state = {};
   }
 }
 

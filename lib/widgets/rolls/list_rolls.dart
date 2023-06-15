@@ -35,7 +35,7 @@ class ListRolls extends ConsumerWidget {
                   return ListRollItem(roll: rolls[index]);
                 },
                 separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(height: 2);
+                  return const SizedBox(height: 4);
                 },
               ),
             ),

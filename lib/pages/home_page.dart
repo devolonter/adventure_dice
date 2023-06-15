@@ -19,7 +19,10 @@ class HomePage extends ConsumerWidget {
       body: const Column(
         children: [
           Expanded(
-            child: ListRolls(),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: ListRolls(),
+            ),
           ),
           RollsResultContainer(),
           Stack(
