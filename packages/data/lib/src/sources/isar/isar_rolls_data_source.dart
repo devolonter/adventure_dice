@@ -17,11 +17,13 @@ class IsarRollsDataSource implements RollsDataSource {
   }
 
   @override
-  Future<void> save(Roll roll) {
+  Future<void> save(List<Roll> rolls) {
     return _isar.writeTxn(() async {
-      await _isar
-          .collection<IsarRollModel>()
-          .put(IsarRollModel.fromEntity(roll));
+      for (final roll in rolls) {
+        await _isar
+            .collection<IsarRollModel>()
+            .put(IsarRollModel.fromEntity(roll));
+      }
     });
   }
 

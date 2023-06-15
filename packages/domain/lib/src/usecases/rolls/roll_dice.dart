@@ -7,9 +7,14 @@ class RollDice {
 
   RollDice(this._rollsRepository);
 
-  Future<Roll> call(Dice dice) async {
-    final roll = dice.roll();
-    await _rollsRepository.save(roll);
-    return roll;
+  Future<List<Roll>> call(Dice dice, {int count = 1}) async {
+    final rolls = <Roll>[];
+
+    for (var i = 0; i < count; i++) {
+      rolls.add(dice.roll());
+    }
+
+    await _rollsRepository.save(rolls);
+    return rolls;
   }
 }

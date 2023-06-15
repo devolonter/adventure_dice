@@ -14,5 +14,5 @@ class RollsRepositoryImpl implements RollsRepository {
   Future<List<Roll>> getAll() => _rollsDataSource.fetchAll();
 
   @override
-  Future<void> save(Roll roll) => _rollsDataSource.save(roll);
+  Future<void> save(List<Roll> rolls) => _rollsDataSource.save(rolls);
 }
