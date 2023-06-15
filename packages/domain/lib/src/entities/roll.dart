@@ -6,11 +6,14 @@ class Roll {
   final int? id;
   final Dice dice;
   final int result;
+  final List<int> history;
 
   final Map<RollModifier, int> _modifiers = {};
 
   Roll(this.dice, this.result,
-      {this.id, List<RollModifier> modifiers = const []}) {
+      {this.id,
+      this.history = const [],
+      List<RollModifier> modifiers = const []}) {
     for (final modifier in modifiers) {
       addModifier(modifier);
     }
@@ -30,5 +33,11 @@ class Roll {
   void addModifier(RollModifier modifier) {
     final int result = _modifiers[modifier] ?? 0;
     _modifiers[modifier] = result + 1;
+  }
+
+  Roll reroll() {
+    final newResult = dice.roll();
+    return Roll(dice, newResult.result,
+        id: id, history: [...history, result], modifiers: modifiers);
   }
 }
