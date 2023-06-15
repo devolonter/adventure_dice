@@ -21,7 +21,7 @@ class ClearRollsButton extends ConsumerWidget {
 
         return IconButton(
           onPressed: () => ref.read(diceRollsProvider.notifier).clearRolls(),
-          icon: const Icon(Icons.refresh),
+          icon: const Icon(Icons.delete),
           iconSize: 28,
           style: IconButton.styleFrom(
             backgroundColor: Theme.of(context).colorScheme.background,
