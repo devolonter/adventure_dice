@@ -27,8 +27,12 @@ class Roll {
   bool get hasDisadvantage => disadvantage > 0;
   bool get hasModifiers => hasAdvantage || hasDisadvantage;
 
-  List<RollModifier> get modifiers =>
-      _modifiers.entries.map((e) => e.key).toList();
+  List<RollModifier> get modifiers {
+    final modifiers = <RollModifier>[];
+    modifiers.addAll(List.filled(advantage, RollModifier.advantage));
+    modifiers.addAll(List.filled(disadvantage, RollModifier.disadvantage));
+    return modifiers;
+  }
 
   void addModifier(RollModifier modifier) {
     final int result = _modifiers[modifier] ?? 0;
