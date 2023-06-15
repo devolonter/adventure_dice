@@ -16,7 +16,9 @@ class IsarRollModel {
       ..id = roll.id
       ..diceSides = roll.dice.sides
       ..result = roll.result
-      ..modifiers = roll.modifiers;
+      ..modifiers = roll.modifiers
+          .map((e) => e == RollModifier.advantage ? 1 : 0)
+          .toList();
   }
 
   Roll toEntity() {
