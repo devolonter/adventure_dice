@@ -53,28 +53,6 @@ class DiceRolls extends _$DiceRolls {
 }
 
 @riverpod
-class SelectedRolls extends _$SelectedRolls {
-  @override
-  Set<Roll> build() {
-    return {};
-  }
-
-  bool toggle(Roll roll) {
-    if (state.contains(roll)) {
-      state = Set.of(state)..remove(roll);
-      return false;
-    } else {
-      state = Set.of(state)..add(roll);
-      return true;
-    }
-  }
-
-  void clear() {
-    state = {};
-  }
-}
-
-@riverpod
 AsyncValue<int> rollsResult(RollsResultRef ref) {
   final rolls = ref.watch(diceRollsProvider);
   return rolls.whenData((rolls) => RollsResult(rolls)());

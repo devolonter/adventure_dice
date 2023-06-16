@@ -35,20 +35,4 @@ final diceRollsProvider =
 );
 
 typedef _$DiceRolls = AutoDisposeAsyncNotifier<List<Roll>>;
-String _$selectedRollsHash() => r'241c46fde214beb181c843757863ad51a8e58275';
-
-/// See also [SelectedRolls].
-@ProviderFor(SelectedRolls)
-final selectedRollsProvider =
-    AutoDisposeNotifierProvider<SelectedRolls, Set<Roll>>.internal(
-  SelectedRolls.new,
-  name: r'selectedRollsProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$selectedRollsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$SelectedRolls = AutoDisposeNotifier<Set<Roll>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

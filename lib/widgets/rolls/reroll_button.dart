@@ -1,20 +1,11 @@
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../providers/dice_rolls.dart';
 
 class RerollButton extends ConsumerWidget {
   const RerollButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Set<Roll> selectedRolls = ref.watch(selectedRollsProvider);
-
-    if (selectedRolls.isEmpty) {
-      return const SizedBox.shrink();
-    }
-
     return TextButton(
         onPressed: () {
 
