@@ -5,6 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/dice_rolls.dart';
 import 'list_roll_item.dart';
 
+final currentRollProvider =
+    Provider<Roll>((ref) => throw UnimplementedError());
+
 class ListRolls extends ConsumerWidget {
   const ListRolls({super.key});
 
@@ -32,7 +35,9 @@ class ListRolls extends ConsumerWidget {
                 padding: EdgeInsets.zero,
                 controller: scrollController,
                 itemBuilder: (context, index) {
-                  return ListRollItem(roll: rolls[index]);
+                  return ProviderScope(overrides: [
+                    currentRollProvider.overrideWithValue(rolls[index])
+                  ], child: const ListRollItem());
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(height: 4);

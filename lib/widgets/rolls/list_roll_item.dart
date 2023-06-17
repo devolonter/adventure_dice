@@ -3,22 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../dice/dice_icon.dart';
+import 'list_rolls.dart';
 import 'roll_modifier_value.dart';
 
 class ListRollItem extends ConsumerWidget {
   const ListRollItem({
     super.key,
-    required this.roll,
   });
 
-  final Roll roll;
-
-
-@override
+  @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final Roll roll = ref.watch(currentRollProvider);
+
     return TextButton(
-      onPressed: () {
-      },
+      onPressed: () {},
       style: TextButton.styleFrom(
         backgroundColor: null,
         padding: EdgeInsets.zero,
@@ -74,5 +72,3 @@ class ListRollItem extends ConsumerWidget {
     );
   }
 }
-
-
