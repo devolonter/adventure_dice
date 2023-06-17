@@ -10,12 +10,14 @@ class IsarRollModel {
   late byte diceSides;
   late byte result;
   late List<byte> modifiers;
+  late List<byte> history;
 
   static IsarRollModel fromEntity(Roll roll) {
     return IsarRollModel()
       ..id = roll.id
       ..diceSides = roll.dice.sides
       ..result = roll.result
+      ..history = roll.history
       ..modifiers = roll.modifiers
           .map((e) => e == RollModifier.advantage ? 1 : 0)
           .toList();
@@ -24,6 +26,7 @@ class IsarRollModel {
   Roll toEntity() {
     return Roll(Dice(diceSides), result,
         id: id,
+        history: history,
         modifiers: modifiers
             .map((e) =>
                 e == 1 ? RollModifier.advantage : RollModifier.disadvantage)

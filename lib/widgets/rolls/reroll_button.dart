@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,17 +9,20 @@ class RerollButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final List<Roll> selectedRolls =
+        ref.watch(selectedRollsProvider).values.toList();
+
     return Visibility(
-      visible: ref.watch(selectedRollsProvider).isNotEmpty,
+      visible: selectedRolls.isNotEmpty,
       child: TextButton(
           onPressed: () {
-
+            ref.read(diceRollsProvider.notifier).rerollDice(selectedRolls);
+            ref.read(selectedRollsProvider.notifier).clear();
           },
           style: TextButton.styleFrom(
             backgroundColor: Theme.of(context).colorScheme.primary,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(64)
-            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(64)),
             foregroundColor: Theme.of(context).colorScheme.onPrimary,
           ),
           child: const Row(
@@ -33,8 +37,7 @@ class RerollButton extends ConsumerWidget {
                 ),
               ),
             ],
-          )
-      ),
+          )),
     );
   }
 }

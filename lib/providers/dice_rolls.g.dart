@@ -20,7 +20,7 @@ final rollsResultProvider = AutoDisposeProvider<AsyncValue<int>>.internal(
 );
 
 typedef RollsResultRef = AutoDisposeProviderRef<AsyncValue<int>>;
-String _$diceRollsHash() => r'18283295b8d14e1ac6ef228c176cd462466a8478';
+String _$diceRollsHash() => r'2cd2dd1eb9e81bad64c132dbf73d850dd85fddbd';
 
 /// See also [DiceRolls].
 @ProviderFor(DiceRolls)
@@ -35,12 +35,12 @@ final diceRollsProvider =
 );
 
 typedef _$DiceRolls = AutoDisposeAsyncNotifier<List<Roll>>;
-String _$selectedRollsHash() => r'b9c075859c865b6bb7c1c57ba8949c13624455aa';
+String _$selectedRollsHash() => r'e7784c1c4a381ef2ea96c8d4a7fa095c71bbb29b';
 
 /// See also [SelectedRolls].
 @ProviderFor(SelectedRolls)
 final selectedRollsProvider =
-    AutoDisposeNotifierProvider<SelectedRolls, Set<int>>.internal(
+    AutoDisposeNotifierProvider<SelectedRolls, Map<int, Roll>>.internal(
   SelectedRolls.new,
   name: r'selectedRollsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -50,5 +50,5 @@ final selectedRollsProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$SelectedRolls = AutoDisposeNotifier<Set<int>>;
+typedef _$SelectedRolls = AutoDisposeNotifier<Map<int, Roll>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

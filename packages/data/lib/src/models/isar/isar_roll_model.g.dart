@@ -22,13 +22,18 @@ const IsarRollModelSchema = CollectionSchema(
       name: r'diceSides',
       type: IsarType.byte,
     ),
-    r'modifiers': PropertySchema(
+    r'history': PropertySchema(
       id: 1,
+      name: r'history',
+      type: IsarType.byteList,
+    ),
+    r'modifiers': PropertySchema(
+      id: 2,
       name: r'modifiers',
       type: IsarType.byteList,
     ),
     r'result': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'result',
       type: IsarType.byte,
     )
@@ -53,6 +58,7 @@ int _isarRollModelEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 + object.history.length;
   bytesCount += 3 + object.modifiers.length;
   return bytesCount;
 }
@@ -64,8 +70,9 @@ void _isarRollModelSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeByte(offsets[0], object.diceSides);
-  writer.writeByteList(offsets[1], object.modifiers);
-  writer.writeByte(offsets[2], object.result);
+  writer.writeByteList(offsets[1], object.history);
+  writer.writeByteList(offsets[2], object.modifiers);
+  writer.writeByte(offsets[3], object.result);
 }
 
 IsarRollModel _isarRollModelDeserialize(
@@ -76,9 +83,10 @@ IsarRollModel _isarRollModelDeserialize(
 ) {
   final object = IsarRollModel();
   object.diceSides = reader.readByte(offsets[0]);
+  object.history = reader.readByteList(offsets[1]) ?? [];
   object.id = id;
-  object.modifiers = reader.readByteList(offsets[1]) ?? [];
-  object.result = reader.readByte(offsets[2]);
+  object.modifiers = reader.readByteList(offsets[2]) ?? [];
+  object.result = reader.readByte(offsets[3]);
   return object;
 }
 
@@ -94,6 +102,8 @@ P _isarRollModelDeserializeProp<P>(
     case 1:
       return (reader.readByteList(offset) ?? []) as P;
     case 2:
+      return (reader.readByteList(offset) ?? []) as P;
+    case 3:
       return (reader.readByte(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -249,6 +259,151 @@ extension IsarRollModelQueryFilter
         upper: upper,
         includeUpper: includeUpper,
       ));
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      historyElementEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'history',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      historyElementGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'history',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      historyElementLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'history',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      historyElementBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'history',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      historyLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'history',
+        length,
+        true,
+        length,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      historyIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'history',
+        0,
+        true,
+        0,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      historyIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'history',
+        0,
+        false,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      historyLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'history',
+        0,
+        true,
+        length,
+        include,
+      );
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      historyLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'history',
+        length,
+        include,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
+      historyLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'history',
+        lower,
+        includeLower,
+        upper,
+        includeUpper,
+      );
     });
   }
 
@@ -607,6 +762,12 @@ extension IsarRollModelQueryWhereDistinct
     });
   }
 
+  QueryBuilder<IsarRollModel, IsarRollModel, QDistinct> distinctByHistory() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'history');
+    });
+  }
+
   QueryBuilder<IsarRollModel, IsarRollModel, QDistinct> distinctByModifiers() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'modifiers');
@@ -631,6 +792,12 @@ extension IsarRollModelQueryProperty
   QueryBuilder<IsarRollModel, int, QQueryOperations> diceSidesProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'diceSides');
+    });
+  }
+
+  QueryBuilder<IsarRollModel, List<int>, QQueryOperations> historyProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'history');
     });
   }
 

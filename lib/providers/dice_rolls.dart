@@ -13,6 +13,7 @@ class DiceRolls extends _$DiceRolls {
   late final RollDice _rollDice;
   late final ModifyRoll _modifyRoll;
   late final ClearRolls _clearRolls;
+  late final RerollDice _rerollDice;
 
   @override
   Future<List<Roll>> build() async {
@@ -24,6 +25,7 @@ class DiceRolls extends _$DiceRolls {
     _rollDice = RollDice(_rollsRepository);
     _modifyRoll = ModifyRoll(_rollsRepository);
     _clearRolls = ClearRolls(_rollsRepository);
+    _rerollDice = RerollDice(_rollsRepository);
 
     return _getAllRolls();
   }
@@ -50,21 +52,32 @@ class DiceRolls extends _$DiceRolls {
       return _getAllRolls();
     });
   }
+
+  Future<void> rerollDice(List<Roll> rolls) async {
+    state = await AsyncValue.guard(() async {
+      await _rerollDice(rolls);
+      return _getAllRolls();
+    });
+  }
 }
 
 @riverpod
 class SelectedRolls extends _$SelectedRolls {
   @override
-  Set<int> build() => {};
+  Map<int, Roll> build() => {};
 
-  void toggle(int? index) {
-    if (index == null) return;
+  void toggle(Roll roll) {
+    if (roll.id == null) return;
 
-    if (state.contains(index)) {
-      state = Set.from(state)..remove(index);
+    if (state.containsKey(roll.id)) {
+      state = Map.from(state)..remove(roll.id);
     } else {
-      state = Set.from(state)..add(index);
+      state = Map.from(state)..[roll.id!] = roll;
     }
+  }
+
+  void clear() {
+    state = {};
   }
 }
 

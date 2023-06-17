@@ -44,7 +44,4 @@ class Roll {
     return Roll(dice, newResult.result,
         id: id, history: [...history, result], modifiers: modifiers);
   }
-
-  @override
-  int get hashCode => id.hashCode;
 }
