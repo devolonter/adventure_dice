@@ -4,8 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/dice_rolls.dart';
 import '../dice/dice_icon.dart';
-import 'list_rolls.dart';
+import 'roll_history_value.dart';
 import 'roll_modifier_value.dart';
+
+final Provider<Roll> rollItemProvider =
+    Provider<Roll>((ref) => throw UnimplementedError());
 
 class ListRollItem extends ConsumerWidget {
   const ListRollItem({
@@ -14,7 +17,7 @@ class ListRollItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Roll roll = ref.watch(currentRollProvider);
+    final Roll roll = ref.watch(rollItemProvider);
     final bool selected =
         ref.watch(selectedRollsProvider.select((s) => s.containsKey(roll.id)));
 
@@ -38,28 +41,10 @@ class ListRollItem extends ConsumerWidget {
           Expanded(
             child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
               for (final history in roll.history)
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  margin: const EdgeInsets.symmetric(horizontal: 2),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    border: Border.all(
-                      width: 1,
-                      color: (selected
-                              ? Theme.of(context).colorScheme.primary
-                              : Theme.of(context).colorScheme.secondary)
-                          .withOpacity(0.33),
-                    )
-                  ),
-                  child: Text(history.toString(),
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: (selected
-                                ? Theme.of(context).colorScheme.primary
-                                : Theme.of(context).colorScheme.secondary)
-                            .withOpacity(0.66),
-                      )),
-                ),
+                ProviderScope(overrides: [
+                  rollHistoryValueProvider.overrideWithValue(
+                      InteractiveHistoryValue(history, selected))
+                ], child: const RollHistoryValue()),
               const SizedBox(width: 8),
               DiceIcon(
                   size: const Size.square(20),
