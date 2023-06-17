@@ -2,6 +2,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../providers/dice_rolls.dart';
 import '../dice/dice_icon.dart';
 import 'list_rolls.dart';
 import 'roll_modifier_value.dart';
@@ -14,11 +15,17 @@ class ListRollItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final Roll roll = ref.watch(currentRollProvider);
+    final bool selected =
+        ref.watch(selectedRollsProvider.select((s) => s.contains(roll.id)));
 
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        ref.read(selectedRollsProvider.notifier).toggle(roll.id);
+      },
       style: TextButton.styleFrom(
-        backgroundColor: null,
+        backgroundColor: selected
+            ? Theme.of(context).colorScheme.primary.withOpacity(0.15)
+            : null,
         padding: EdgeInsets.zero,
         minimumSize: Size.zero,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -34,7 +41,9 @@ class ListRollItem extends ConsumerWidget {
                   size: const Size.square(20),
                   dice: roll.dice,
                   withText: false,
-                  color: Theme.of(context).colorScheme.secondary),
+                  color: selected
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).colorScheme.secondary),
             ]),
           ),
           const SizedBox(width: 6),
@@ -48,7 +57,9 @@ class ListRollItem extends ConsumerWidget {
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: selected
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.secondary,
                   ),
                 ),
                 if (roll.hasModifiers)
