@@ -7,7 +7,7 @@ part 'isar_roll_model.g.dart';
 @Name('Rolls')
 class IsarRollModel {
   late Id? id;
-  late byte diceSides;
+  late byte dieSides;
   late byte result;
   late List<byte> modifiers;
   late List<byte> history;
@@ -15,7 +15,7 @@ class IsarRollModel {
   static IsarRollModel fromEntity(Roll roll) {
     return IsarRollModel()
       ..id = roll.id
-      ..diceSides = roll.dice.sides
+      ..dieSides = roll.die.sides
       ..result = roll.result
       ..history = roll.history
       ..modifiers = roll.modifiers
@@ -24,7 +24,7 @@ class IsarRollModel {
   }
 
   Roll toEntity() {
-    return Roll(Dice(diceSides), result,
+    return Roll(Die(dieSides), result,
         id: id,
         history: history,
         modifiers: modifiers

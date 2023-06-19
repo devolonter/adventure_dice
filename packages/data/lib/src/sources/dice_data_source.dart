@@ -1,5 +1,5 @@
 import 'package:domain/domain.dart';
 
 abstract class DiceDataSource {
-  Future<List<Dice>> fetchAll();
+  Future<List<Die>> fetchAll();
 }

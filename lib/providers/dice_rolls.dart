@@ -10,10 +10,10 @@ part 'dice_rolls.g.dart';
 class DiceRolls extends _$DiceRolls {
   late final RollsRepository _rollsRepository;
   late final GetAllRolls _getAllRolls;
-  late final RollDice _rollDice;
+  late final RollDie _rollDie;
   late final ModifyRoll _modifyRoll;
   late final ClearRolls _clearRolls;
-  late final RerollDice _rerollDice;
+  late final RerollDie _rerollDie;
 
   @override
   Future<List<Roll>> build() async {
@@ -22,17 +22,17 @@ class DiceRolls extends _$DiceRolls {
     _rollsRepository = RollsRepositoryImpl(IsarRollsDataSource(isar));
 
     _getAllRolls = GetAllRolls(_rollsRepository);
-    _rollDice = RollDice(_rollsRepository);
+    _rollDie = RollDie(_rollsRepository);
     _modifyRoll = ModifyRoll(_rollsRepository);
     _clearRolls = ClearRolls(_rollsRepository);
-    _rerollDice = RerollDice(_rollsRepository);
+    _rerollDie = RerollDie(_rollsRepository);
 
     return _getAllRolls();
   }
 
-  Future<void> rollDice(Dice dice) async {
+  Future<void> rollDie(Die dice) async {
     state = await AsyncValue.guard(() async {
-      await _rollDice(dice);
+      await _rollDie(dice);
       return _getAllRolls();
     });
   }
@@ -53,9 +53,9 @@ class DiceRolls extends _$DiceRolls {
     });
   }
 
-  Future<void> rerollDice(List<Roll> rolls) async {
+  Future<void> rerollDie(List<Roll> rolls) async {
     state = await AsyncValue.guard(() async {
-      await _rerollDice(rolls);
+      await _rerollDie(rolls);
       return _getAllRolls();
     });
   }

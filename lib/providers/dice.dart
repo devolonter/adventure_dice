@@ -5,12 +5,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'dice.g.dart';
 
 @riverpod
-class AppDice extends _$AppDice {
+class DiceList extends _$DiceList {
   late final DiceRepository _diceRepository;
   late final GetAllDice _getAllDice;
 
   @override
-  FutureOr<List<Dice>> build() async {
+  FutureOr<List<Die>> build() async {
     _diceRepository = DiceRepositoryImpl(
       StaticDiceDataSource()
     );

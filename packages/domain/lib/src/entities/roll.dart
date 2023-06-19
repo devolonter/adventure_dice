@@ -1,16 +1,16 @@
-import 'dice.dart';
+import 'die.dart';
 
 enum RollModifier { advantage, disadvantage }
 
 class Roll {
   final int? id;
-  final Dice dice;
+  final Die die;
   final int result;
   final List<int> history;
 
   final Map<RollModifier, int> _modifiers = {};
 
-  Roll(this.dice, this.result,
+  Roll(this.die, this.result,
       {this.id,
       this.history = const [],
       List<RollModifier> modifiers = const []}) {
@@ -40,8 +40,8 @@ class Roll {
   }
 
   Roll reroll() {
-    final newResult = dice.roll();
-    return Roll(dice, newResult.result,
+    final newResult = die.roll();
+    return Roll(die, newResult.result,
         id: id, history: [...history, result], modifiers: modifiers);
   }
 }

@@ -1,4 +1,4 @@
-import '../../entities/dice.dart';
+import '../../entities/die.dart';
 import '../../repositories/dice_repository.dart';
 
 class GetAllDice {
@@ -6,5 +6,5 @@ class GetAllDice {
 
   GetAllDice(this._diceRepository);
 
-  Future<List<Dice>> call() => _diceRepository.getAll();
+  Future<List<Die>> call() => _diceRepository.getAll();
 }

@@ -3,13 +3,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class DicePainter extends CustomPainter {
+class DiePainter extends CustomPainter {
   final int sides;
   final Color color;
   final Color textColor;
   final bool withText;
 
-  DicePainter(
+  DiePainter(
       {required this.sides,
       required this.color,
       required this.textColor,
@@ -182,7 +182,7 @@ class DicePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(DicePainter oldDelegate) {
+  bool shouldRepaint(DiePainter oldDelegate) {
     return oldDelegate.sides != sides;
   }
 }

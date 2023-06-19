@@ -1,9 +1,9 @@
 import '../../../domain.dart';
 
-class RerollDice {
+class RerollDie {
   final RollsRepository _rollsRepository;
 
-  RerollDice(this._rollsRepository);
+  RerollDie(this._rollsRepository);
 
   Future<List<Roll>> call(List<Roll> rolls) async {
     final List<Roll> result = rolls.map((roll) => roll.reroll()).toList();

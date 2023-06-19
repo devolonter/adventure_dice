@@ -16,7 +16,7 @@ class RerollButton extends ConsumerWidget {
       visible: selectedRolls.isNotEmpty,
       child: TextButton(
           onPressed: () {
-            ref.read(diceRollsProvider.notifier).rerollDice(selectedRolls);
+            ref.read(diceRollsProvider.notifier).rerollDie(selectedRolls);
             ref.read(selectedRollsProvider.notifier).clear();
           },
           style: TextButton.styleFrom(

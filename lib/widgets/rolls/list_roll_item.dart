@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/dice_rolls.dart';
-import '../dice/dice_icon.dart';
+import '../dice/die_icon.dart';
 import 'roll_history_value.dart';
 import 'roll_modifier_value.dart';
 
@@ -46,9 +46,9 @@ class ListRollItem extends ConsumerWidget {
                       InteractiveHistoryValue(history, selected))
                 ], child: const RollHistoryValue()),
               const SizedBox(width: 8),
-              DiceIcon(
+              DieIcon(
                   size: const Size.square(20),
-                  dice: roll.dice,
+                  dice: roll.die,
                   withText: false,
                   color: selected
                       ? Theme.of(context).colorScheme.primary

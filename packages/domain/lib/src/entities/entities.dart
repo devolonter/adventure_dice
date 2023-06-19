@@ -1,2 +1,2 @@
-export 'dice.dart';
+export 'die.dart';
 export 'roll.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/dice.dart';
-import 'dice_single.dart';
+import 'die_single.dart';
 
 class DiceGrid extends ConsumerWidget {
   final int crossAxisCount;
@@ -14,14 +14,14 @@ class DiceGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AsyncValue<List<Dice>> config = ref.watch(appDiceProvider);
+    final AsyncValue<List<Die>> config = ref.watch(diceListProvider);
 
     final int countDice = config.value?.length ?? 0;
-    final double diceSize = MediaQuery.of(context).size.width / crossAxisCount;
+    final double dieSize = MediaQuery.of(context).size.width / crossAxisCount;
     final int countDicePerRow = (countDice / crossAxisCount).ceil();
 
     return Container(
-      height: diceSize * countDicePerRow +
+      height: dieSize * countDicePerRow +
           (padding / 2) * (countDicePerRow - 1) +
           padding * 2,
       color: Theme.of(context).colorScheme.primary.withOpacity(0.33),
@@ -36,7 +36,7 @@ class DiceGrid extends ConsumerWidget {
           itemCount: countDice,
           itemBuilder: (context, index) {
             final dice = config.value![index];
-            return DiceSingle(dice: dice, size: Size.square(diceSize));
+            return DieSingle(die: dice, size: Size.square(dieSize));
           }),
     );
   }

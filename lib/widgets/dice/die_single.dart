@@ -3,31 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/dice_rolls.dart';
-import 'dice_icon.dart';
+import 'die_icon.dart';
 
-class DiceSingle extends ConsumerWidget {
-  const DiceSingle({
+class DieSingle extends ConsumerWidget {
+  const DieSingle({
     super.key,
-    required this.dice,
+    required this.die,
     required this.size,
   });
 
-  final Dice dice;
+  final Die die;
   final Size size;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return TextButton(
-      onPressed: () => ref.read(diceRollsProvider.notifier).rollDice(dice),
+      onPressed: () => ref.read(diceRollsProvider.notifier).rollDie(die),
       style: TextButton.styleFrom(
         padding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      child: DiceIcon(
+      child: DieIcon(
         size: size,
-        dice: dice,
+        dice: die,
         color: Theme.of(context).colorScheme.primary,
         textColor: Theme.of(context).colorScheme.onPrimary,
       ),

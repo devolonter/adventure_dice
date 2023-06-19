@@ -2,10 +2,10 @@ import 'dart:math';
 
 import '../../domain.dart';
 
-class Dice {
+class Die {
   final int sides;
 
-  Dice(this.sides);
+  Die(this.sides);
 
   Roll roll() {
     return Roll(this, Random().nextInt(sides) + 1);

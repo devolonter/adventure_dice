@@ -17,9 +17,9 @@ const IsarRollModelSchema = CollectionSchema(
   name: r'Rolls',
   id: -7481504655693309746,
   properties: {
-    r'diceSides': PropertySchema(
+    r'dieSides': PropertySchema(
       id: 0,
-      name: r'diceSides',
+      name: r'dieSides',
       type: IsarType.byte,
     ),
     r'history': PropertySchema(
@@ -69,7 +69,7 @@ void _isarRollModelSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeByte(offsets[0], object.diceSides);
+  writer.writeByte(offsets[0], object.dieSides);
   writer.writeByteList(offsets[1], object.history);
   writer.writeByteList(offsets[2], object.modifiers);
   writer.writeByte(offsets[3], object.result);
@@ -82,7 +82,7 @@ IsarRollModel _isarRollModelDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = IsarRollModel();
-  object.diceSides = reader.readByte(offsets[0]);
+  object.dieSides = reader.readByte(offsets[0]);
   object.history = reader.readByteList(offsets[1]) ?? [];
   object.id = id;
   object.modifiers = reader.readByteList(offsets[2]) ?? [];
@@ -207,45 +207,45 @@ extension IsarRollModelQueryWhere
 extension IsarRollModelQueryFilter
     on QueryBuilder<IsarRollModel, IsarRollModel, QFilterCondition> {
   QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
-      diceSidesEqualTo(int value) {
+      dieSidesEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'diceSides',
+        property: r'dieSides',
         value: value,
       ));
     });
   }
 
   QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
-      diceSidesGreaterThan(
+      dieSidesGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'diceSides',
+        property: r'dieSides',
         value: value,
       ));
     });
   }
 
   QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
-      diceSidesLessThan(
+      dieSidesLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'diceSides',
+        property: r'dieSides',
         value: value,
       ));
     });
   }
 
   QueryBuilder<IsarRollModel, IsarRollModel, QAfterFilterCondition>
-      diceSidesBetween(
+      dieSidesBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -253,7 +253,7 @@ extension IsarRollModelQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'diceSides',
+        property: r'dieSides',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -688,16 +688,16 @@ extension IsarRollModelQueryLinks
 
 extension IsarRollModelQuerySortBy
     on QueryBuilder<IsarRollModel, IsarRollModel, QSortBy> {
-  QueryBuilder<IsarRollModel, IsarRollModel, QAfterSortBy> sortByDiceSides() {
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterSortBy> sortByDieSides() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'diceSides', Sort.asc);
+      return query.addSortBy(r'dieSides', Sort.asc);
     });
   }
 
   QueryBuilder<IsarRollModel, IsarRollModel, QAfterSortBy>
-      sortByDiceSidesDesc() {
+      sortByDieSidesDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'diceSides', Sort.desc);
+      return query.addSortBy(r'dieSides', Sort.desc);
     });
   }
 
@@ -716,16 +716,16 @@ extension IsarRollModelQuerySortBy
 
 extension IsarRollModelQuerySortThenBy
     on QueryBuilder<IsarRollModel, IsarRollModel, QSortThenBy> {
-  QueryBuilder<IsarRollModel, IsarRollModel, QAfterSortBy> thenByDiceSides() {
+  QueryBuilder<IsarRollModel, IsarRollModel, QAfterSortBy> thenByDieSides() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'diceSides', Sort.asc);
+      return query.addSortBy(r'dieSides', Sort.asc);
     });
   }
 
   QueryBuilder<IsarRollModel, IsarRollModel, QAfterSortBy>
-      thenByDiceSidesDesc() {
+      thenByDieSidesDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'diceSides', Sort.desc);
+      return query.addSortBy(r'dieSides', Sort.desc);
     });
   }
 
@@ -756,9 +756,9 @@ extension IsarRollModelQuerySortThenBy
 
 extension IsarRollModelQueryWhereDistinct
     on QueryBuilder<IsarRollModel, IsarRollModel, QDistinct> {
-  QueryBuilder<IsarRollModel, IsarRollModel, QDistinct> distinctByDiceSides() {
+  QueryBuilder<IsarRollModel, IsarRollModel, QDistinct> distinctByDieSides() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'diceSides');
+      return query.addDistinctBy(r'dieSides');
     });
   }
 
@@ -789,9 +789,9 @@ extension IsarRollModelQueryProperty
     });
   }
 
-  QueryBuilder<IsarRollModel, int, QQueryOperations> diceSidesProperty() {
+  QueryBuilder<IsarRollModel, int, QQueryOperations> dieSidesProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'diceSides');
+      return query.addPropertyName(r'dieSides');
     });
   }
 

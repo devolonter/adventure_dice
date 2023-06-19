@@ -8,5 +8,5 @@ class DiceRepositoryImpl implements DiceRepository {
   DiceRepositoryImpl(this._diceDataSource);
 
   @override
-  Future<List<Dice>> getAll() => _diceDataSource.fetchAll();
+  Future<List<Die>> getAll() => _diceDataSource.fetchAll();
 }

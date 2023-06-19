@@ -1,17 +1,17 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
-import 'dice_painter.dart';
+import 'die_painter.dart';
 
-class DiceIcon extends StatelessWidget {
+class DieIcon extends StatelessWidget {
   final Size size;
-  final Dice dice;
+  final Die dice;
   final Color color;
   final Color textColor;
   final bool withText;
 
 
-  const DiceIcon({
+  const DieIcon({
     super.key,
     required this.size,
     required this.dice,
@@ -24,7 +24,7 @@ class DiceIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomPaint(
       size: size * 0.55,
-      painter: DicePainter(
+      painter: DiePainter(
         sides: dice.sides,
         color: color,
         textColor: textColor,
