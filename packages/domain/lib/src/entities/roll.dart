@@ -34,9 +34,11 @@ class Roll {
     return modifiers;
   }
 
-  void addModifier(RollModifier modifier) {
+  Roll addModifier(RollModifier modifier) {
     final int result = _modifiers[modifier] ?? 0;
     _modifiers[modifier] = result + 1;
+    return Roll(die, this.result,
+        id: id, history: history, modifiers: modifiers);
   }
 
   Roll reroll() {
