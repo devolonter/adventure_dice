@@ -19,7 +19,8 @@ class DiceGrid extends ConsumerWidget {
     return dice.maybeWhen(
       data: (config) {
         final int countDice = config.length;
-        final double dieSize = MediaQuery.of(context).size.width / crossAxisCount;
+        final double dieSize =
+            MediaQuery.of(context).size.width / crossAxisCount;
         final int countDicePerRow = (countDice / crossAxisCount).ceil();
 
         return Container(
@@ -38,7 +39,10 @@ class DiceGrid extends ConsumerWidget {
               itemCount: countDice,
               itemBuilder: (context, index) {
                 final die = config[index];
-                return DieSingle(die: die, size: Size.square(dieSize));
+                return ProviderScope(overrides: [
+                  dieSinglePropsProvider.overrideWithValue(
+                      DieSingleProps(die: die, size: Size.square(dieSize))),
+                ], child: const DieSingle());
               }),
         );
       },
