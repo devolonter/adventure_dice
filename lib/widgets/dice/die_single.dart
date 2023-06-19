@@ -27,7 +27,7 @@ class DieSingle extends ConsumerWidget {
       ),
       child: DieIcon(
         size: size,
-        dice: die,
+        die: die,
         color: Theme.of(context).colorScheme.primary,
         textColor: Theme.of(context).colorScheme.onPrimary,
       ),

@@ -48,7 +48,7 @@ class ListRollItem extends ConsumerWidget {
               const SizedBox(width: 8),
               DieIcon(
                   size: const Size.square(20),
-                  dice: roll.die,
+                  die: roll.die,
                   withText: false,
                   color: selected
                       ? Theme.of(context).colorScheme.primary

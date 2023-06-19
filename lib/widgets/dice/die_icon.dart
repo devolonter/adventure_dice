@@ -5,7 +5,7 @@ import 'die_painter.dart';
 
 class DieIcon extends StatelessWidget {
   final Size size;
-  final Die dice;
+  final Die die;
   final Color color;
   final Color textColor;
   final bool withText;
@@ -14,7 +14,7 @@ class DieIcon extends StatelessWidget {
   const DieIcon({
     super.key,
     required this.size,
-    required this.dice,
+    required this.die,
     this.color = Colors.black,
     this.textColor = Colors.white,
     this.withText = true,
@@ -25,7 +25,7 @@ class DieIcon extends StatelessWidget {
     return CustomPaint(
       size: size * 0.55,
       painter: DiePainter(
-        sides: dice.sides,
+        sides: die.sides,
         color: color,
         textColor: textColor,
         withText: withText,
