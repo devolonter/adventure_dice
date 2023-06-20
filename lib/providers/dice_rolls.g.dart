@@ -6,7 +6,7 @@ part of 'dice_rolls.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$rollsResultHash() => r'c2fe4a3d13f44e2b987c32de0ea56541e65761a0';
+String _$rollsResultHash() => r'ca7fa9f9095a91dce02761aa9c5ba69d9a3b65cf';
 
 /// See also [rollsResult].
 @ProviderFor(rollsResult)
@@ -20,6 +20,21 @@ final rollsResultProvider = AutoDisposeProvider<AsyncValue<int>>.internal(
 );
 
 typedef RollsResultRef = AutoDisposeProviderRef<AsyncValue<int>>;
+String _$countDieRollsHash() => r'bc360aa9dcc382b1ebb23d7b0db6aa608ccdfdd1';
+
+/// See also [countDieRolls].
+@ProviderFor(countDieRolls)
+final countDieRollsProvider = AutoDisposeProvider<CountDieRolls>.internal(
+  countDieRolls,
+  name: r'countDieRollsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$countDieRollsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CountDieRollsRef = AutoDisposeProviderRef<CountDieRolls>;
 String _$diceRollsHash() => r'4b0b3d0aa5608459477032b650ce8b06afc18452';
 
 /// See also [DiceRolls].

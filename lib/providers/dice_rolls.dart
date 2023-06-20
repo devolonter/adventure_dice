@@ -83,6 +83,12 @@ class SelectedRolls extends _$SelectedRolls {
 
 @riverpod
 AsyncValue<int> rollsResult(RollsResultRef ref) {
-  final rolls = ref.watch(diceRollsProvider);
+  final AsyncValue<List<Roll>> rolls = ref.watch(diceRollsProvider);
   return rolls.whenData((rolls) => RollsResult(rolls)());
+}
+
+@riverpod
+CountDieRolls countDieRolls(CountDieRollsRef ref) {
+  final AsyncValue<List<Roll>> rolls = ref.watch(diceRollsProvider);
+  return CountDieRolls(rolls.valueOrNull ?? []);
 }
