@@ -46,27 +46,28 @@ class DieSingle extends ConsumerWidget {
             color: Theme.of(context).colorScheme.primary,
             textColor: Theme.of(context).colorScheme.onPrimary,
           ),
-          Positioned(
-            left: -5,
-            top: -5,
-            child: Container(
-              width: 18,
-              height: 18,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onPrimary,
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Text(
-                props.countDieRolls.toString(),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
+          if (props.countDieRolls > 0)
+            Positioned(
+              left: -5,
+              top: -5,
+              child: Container(
+                width: 18,
+                height: 18,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Text(
+                  props.countDieRolls.toString(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                  ),
                 ),
               ),
-            ),
-          )
+            )
         ],
       ),
     );
