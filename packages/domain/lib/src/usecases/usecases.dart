@@ -4,5 +4,6 @@ export 'rolls/clear_rolls.dart';
 export 'rolls/get_all_rolls.dart';
 export 'rolls/rolls_result.dart';
 export 'rolls/reroll_die.dart';
+export 'rolls/count_die_rolls.dart';
 
 export 'dice/get_all_dice.dart';
