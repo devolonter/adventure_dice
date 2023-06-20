@@ -12,10 +12,12 @@ class DieSingleProps {
   const DieSingleProps({
     required this.die,
     required this.size,
+    required this.countDieRolls
   });
 
   final Die die;
   final Size size;
+  final int countDieRolls;
 }
 
 class DieSingle extends ConsumerWidget {
@@ -35,11 +37,37 @@ class DieSingle extends ConsumerWidget {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      child: DieIcon(
-        size: props.size,
-        die: props.die,
-        color: Theme.of(context).colorScheme.primary,
-        textColor: Theme.of(context).colorScheme.onPrimary,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          DieIcon(
+            size: props.size,
+            die: props.die,
+            color: Theme.of(context).colorScheme.primary,
+            textColor: Theme.of(context).colorScheme.onPrimary,
+          ),
+          Positioned(
+            left: -5,
+            top: -5,
+            child: Container(
+              width: 18,
+              height: 18,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.onPrimary,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Text(
+                props.countDieRolls.toString(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/dice.dart';
+import '../../providers/dice_rolls.dart';
 import 'die_single.dart';
 
 class DiceGrid extends ConsumerWidget {
@@ -17,11 +18,13 @@ class DiceGrid extends ConsumerWidget {
     final AsyncValue<List<Die>> dice = ref.watch(diceListProvider);
 
     return dice.maybeWhen(
-      data: (config) {
-        final int countDice = config.length;
+      data: (diceData) {
+        final int countDice = diceData.length;
         final double dieSize =
             MediaQuery.of(context).size.width / crossAxisCount;
         final int countDicePerRow = (countDice / crossAxisCount).ceil();
+
+        final CountDieRolls countDieRolls = ref.watch(countDieRollsProvider);
 
         return Container(
           height: dieSize * countDicePerRow +
@@ -38,10 +41,12 @@ class DiceGrid extends ConsumerWidget {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: countDice,
               itemBuilder: (context, index) {
-                final die = config[index];
+                final die = diceData[index];
                 return ProviderScope(overrides: [
-                  dieSinglePropsProvider.overrideWithValue(
-                      DieSingleProps(die: die, size: Size.square(dieSize))),
+                  dieSinglePropsProvider.overrideWithValue(DieSingleProps(
+                      die: die,
+                      size: Size.square(dieSize),
+                      countDieRolls: countDieRolls(die))),
                 ], child: const DieSingle());
               }),
         );
