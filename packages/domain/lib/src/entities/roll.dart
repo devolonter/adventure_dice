@@ -8,7 +8,7 @@ class Roll {
   final int result;
   final List<int> history;
 
-  final Map<RollModifier, int> _modifiers = {};
+  late Map<RollModifier, int> _modifiers = {};
 
   Roll(this.die, this.result,
       {this.id,
@@ -18,6 +18,23 @@ class Roll {
       addModifier(modifier);
     }
   }
+
+  Roll.fromRoll(Roll roll, {int? id})
+      : this._raw(
+          die: roll.die,
+          result: roll.result,
+          id: id,
+          history: roll.history,
+          modifiers: roll._modifiers,
+  );
+
+  Roll._raw({
+    required this.die,
+    required this.result,
+    required this.id,
+    required this.history,
+    Map<RollModifier, int> modifiers = const {},
+  }) : _modifiers = modifiers;
 
   int get advantage => _modifiers[RollModifier.advantage] ?? 0;
   int get disadvantage => _modifiers[RollModifier.disadvantage] ?? 0;
@@ -37,8 +54,7 @@ class Roll {
   Roll addModifier(RollModifier modifier) {
     final int result = _modifiers[modifier] ?? 0;
     _modifiers[modifier] = result + 1;
-    return Roll(die, this.result,
-        id: id, history: history, modifiers: modifiers);
+    return Roll.fromRoll(this, id: id);
   }
 
   Roll reroll() {

@@ -17,9 +17,11 @@ class RollsResult extends ConsumerWidget {
     return Row(
       children: [
         IconButton(
-          onPressed: () => ref
-              .read(diceRollsProvider.notifier)
-              .modifyRoll(RollModifier.disadvantage),
+          onPressed: () {
+            ref
+                .read(diceRollsProvider.notifier)
+                .modifyRoll(RollModifier.disadvantage);
+          },
           icon: const Icon(Icons.remove),
           iconSize: 28,
         ),
